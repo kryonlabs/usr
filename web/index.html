@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9front Development Environment</title>
+    <style>
+        body {
+            font-family: 'Terminus', 'Courier New', monospace;
+            background-color: #ffffea;
+            color: #000000;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        h1 {
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+        }
+        .info {
+            background: #eee;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        code {
+            background: #ddd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>9front Development Environment</h1>
+
+    <div class="info">
+        <h2>Welcome</h2>
+        <p>This content is served from <code>/sys/web/</code> in the source tree.</p>
+        <p>Edit files on the host at <code>/mnt/storage/Projects/9front/sys/web/</code> and see changes immediately in the VM.</p>
+    </div>
+
+    <div class="info">
+        <h2>Development Setup</h2>
+        <ul>
+            <li><strong>Source tree mounted at:</strong> <code>/sys</code></li>
+            <li><strong>Web content:</strong> <code>/usr/web</code> &rarr; <code>/sys/web</code></li>
+            <li><strong>Edit on host:</strong> <code>/mnt/storage/Projects/9front/sys/web/</code></li>
+        </ul>
+    </div>
+
+    <div class="info">
+        <h2>Quick Links</h2>
+        <ul>
+            <li><a href="/static/">Static files directory</a></li>
+            <li><a href="/cgi-bin/">CGI scripts</a></li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>Powered by 9front on TinyEMU with VirtIO 9P</p>
+    </footer>
+</body>
+</html>

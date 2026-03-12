@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 580" width="100%" height="auto">
+  <defs>
+    <!-- Arrow marker -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2b2b2b"/>
+    </marker>
+    <!-- Shadow filter -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="1" dy="1" stdDeviation="1" flood-color="#2b2b2b" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <style>
+    .box { fill: #e8e4d8; stroke: #2b2b2b; stroke-width: 2; filter: url(#shadow); }
+    .box-core { fill: #d4d0c4; stroke: #3a5c8b; stroke-width: 2.5; }
+    .box-cpu { fill: #f0ede4; stroke: #3a5c8b; stroke-width: 2; }
+    .box-native { fill: #f0ede4; stroke: #2d5d2d; stroke-width: 2; }
+    .text-title { font-family: "Segoe UI", Tahoma, sans-serif; font-size: 16px; font-weight: 600; fill: #2b2b2b; text-anchor: middle; }
+    .text-body { font-family: "Segoe UI", Tahoma, sans-serif; font-size: 13px; fill: #2b2b2b; text-anchor: middle; }
+    .text-small { font-family: "Segoe UI", Tahoma, sans-serif; font-size: 11px; fill: #5a5a5a; text-anchor: middle; }
+    .text-mode { font-family: "Segoe UI", Tahoma, sans-serif; font-size: 12px; font-weight: 600; fill: #2b2b2b; text-anchor: middle; }
+    .arrow { stroke: #2b2b2b; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+    .label { font-family: "Segoe UI", Tahoma, sans-serif; font-size: 11px; fill: #5a5a5a; text-anchor: middle; font-style: italic; }
+  </style>
+
+  <!-- Core Box (Top) -->
+  <rect x="150" y="20" width="500" height="70" rx="4" class="box box-core"/>
+  <text x="400" y="42" class="text-title">kryon — Portable C Library Core</text>
+  <text x="400" y="60" class="text-small">• 9P2000 State Machine • Synthetic File Tree</text>
+  <text x="400" y="75" class="text-small">• TCP CPU Server Module • Event Dispatcher</text>
+
+  <!-- Vertical lines from core -->
+  <line x1="250" y1="90" x2="250" y2="110" stroke="#2b2b2b" stroke-width="1.5"/>
+  <line x1="550" y1="90" x2="550" y2="110" stroke="#2b2b2b" stroke-width="1.5"/>
+
+  <!-- Mode Labels -->
+  <text x="250" y="125" class="text-mode" fill="#3a5c8b">CPU Server Mode</text>
+  <text x="250" y="140" class="text-small">(Linux/Android/BSD)</text>
+  <text x="550" y="125" class="text-mode" fill="#2d5d2d">Native Mode</text>
+  <text x="550" y="140" class="text-small">(9front)</text>
+
+  <!-- Arrows from modes to middle layer -->
+  <line x1="250" y1="145" x2="250" y2="175" class="arrow"/>
+  <line x1="550" y1="145" x2="550" y2="175" class="arrow"/>
+
+  <!-- Middle Layer Boxes -->
+  <rect x="140" y="180" width="220" height="50" rx="4" class="box box-cpu"/>
+  <text x="250" y="202" class="text-title">TCP Listener</text>
+  <text x="250" y="218" class="text-small">(port 17019)</text>
+
+  <rect x="440" y="180" width="220" height="50" rx="4" class="box box-native"/>
+  <text x="550" y="202" class="text-title">Kernel Pipes</text>
+  <text x="550" y="218" class="text-small">+ libdraw</text>
+
+  <!-- Protocol labels -->
+  <text x="250" y="255" class="label">9P/TCP</text>
+  <text x="550" y="255" class="label">9P (kernel pipes)</text>
+
+  <!-- Arrows to bottom layer -->
+  <line x1="250" y1="230" x2="250" y2="275" class="arrow"/>
+  <line x1="550" y1="230" x2="550" y2="275" class="arrow"/>
+
+  <!-- Bottom Layer Boxes -->
+  <rect x="140" y="280" width="220" height="60" rx="4" class="box box-cpu"/>
+  <text x="250" y="305" class="text-title">Drawterm</text>
+  <text x="250" y="322" class="text-small">(Any Client)</text>
+
+  <rect x="440" y="280" width="220" height="60" rx="4" class="box box-native"/>
+  <text x="550" y="305" class="text-title">9front rio</text>
+  <text x="550" y="322" class="text-small">Native Windows</text>
+
+  <!-- Converging lines -->
+  <line x1="250" y1="340" x2="250" y2="375" stroke="#2b2b2b" stroke-width="1.5"/>
+  <line x1="550" y1="340" x2="550" y2="375" stroke="#2b2b2b" stroke-width="1.5"/>
+  <line x1="250" y1="375" x2="550" y2="375" stroke="#2b2b2b" stroke-width="1.5"/>
+  <line x1="400" y1="375" x2="400" y2="395" class="arrow"/>
+
+  <!-- Controller Box (Bottom) -->
+  <rect x="150" y="400" width="500" height="60" rx="4" class="box"/>
+  <text x="400" y="425" class="text-title">Controller Layer</text>
+  <text x="400" y="443" class="text-small">Any Language: C / Lua / Scheme / Python / rc</text>
+
+  <!-- Note at bottom -->
+  <text x="400" y="490" class="text-small" style="font-style: italic;">Any language that reads/writes files can drive the UI</text>
+  <text x="400" y="510" class="text-small" style="font-style: italic;">via the 9P2000 synthetic filesystem protocol</text>
+</svg>
