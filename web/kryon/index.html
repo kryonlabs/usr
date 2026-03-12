@@ -5,7 +5,7 @@
     <title>Kryon Labs</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kryon Labs develops open-source software inspired by Plan 9: marrow, kryon, lib9, uxn9, lu9, and applications">
+    <meta name="description" content="Kryon Labs develops open-source software inspired by Plan 9: marrow, kryon, lib9, uxn9, lu9, axon, and applications">
     <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
@@ -37,6 +37,7 @@
         <a href="#projects">Projects</a>
         <a href="#marrow">Marrow</a>
         <a href="#kryon">Kryon</a>
+        <a href="#axon">AXON</a>
         <a href="#libraries">Libraries</a>
         <a href="#applications">Applications</a>
         <a href="#sponsors">Sponsors</a>
@@ -72,6 +73,10 @@
             <div class="card">
                 <h3>lu9</h3>
                 <p>Lua 5.4 for Plan 9 with p9 system interface. Statically linked, complete Plan 9 integration.</p>
+            </div>
+            <div class="card">
+                <h3>AXON</h3>
+                <p>File-based AI encyclopedia with multi-mind fact extraction. Knowledge base exposed via 9P filesystem with transparent reasoning and Plan 9-style inbox processing.</p>
             </div>
             <div class="card">
                 <h3>Applications</h3>
@@ -184,6 +189,75 @@ kryon.<span class="token-function">write</span>(<span class="token-string">"/mnt
 <span class="token-operator">;</span> 9kry <span class="token-operator">-m</span> <span class="token-string">/mnt/kryon</span> <span class="token-operator">&amp;</span>
 <span class="token-comment"># Run your controller (speaks 9P to /mnt/kryon)</span>
 <span class="token-operator">;</span> lua controller.lua</code></pre>
+    </section>
+
+    <section id="axon">
+        <h1>AXON: File-Based AI Encyclopedia</h1>
+        <p><b>AXON</b> is a transparent, file-based AI system that implements a knowledge base through the 9P protocol. It embodies the Plan 9 philosophy that "everything is a file" — including AI reasoning, knowledge storage, and multi-agent consensus building.</p>
+
+        <h2>Core Concepts</h2>
+        <p>AXON treats AI operations as filesystem operations. You search, query, and manage knowledge by reading and writing files. The system provides:</p>
+        <ul>
+            <li><b>9P Filesystem interface:</b> Complete AI system exposed as a mountable filesystem</li>
+            <li><b>Multi-mind fact extraction:</b> Multiple AI agents (literal, skeptic, synthesizer, pattern_matcher, questioner) analyze facts independently</li>
+            <li><b>Consensus building:</b> Contradiction detection and confidence scoring across multiple minds</li>
+            <li><b>Plan 9-style inbox processing:</b> Drop files in /inbox and trigger processing via /ctl</li>
+            <li><b>Memory systems:</b> Episodic, semantic, and procedural memory storage</li>
+            <li><b>Transparent reasoning:</b> All AI operations visible through file operations</li>
+        </ul>
+
+        <h2>Filesystem Structure</h2>
+        <pre><code><span class="token-comment"># AXON filesystem layout</span>
+/mnt/axon/
+├── ctl                    <span class="token-comment"># Control file - trigger actions</span>
+├── encyclopedia/
+│   ├── entries/          <span class="token-comment"># Knowledge base entries</span>
+│   └── search/
+│       ├── query         <span class="token-comment"># Write search terms here</span>
+│       └── results       <span class="token-comment"># Read results here</span>
+├── inbox/
+│   └── incoming/         <span class="token-comment"># Drop files for processing</span>
+├── minds/                <span class="token-comment"># Multi-mind status</span>
+│   ├── status
+│   ├── literal/
+│   ├── skeptic/
+│   └── synthesizer/
+└── memory/
+    ├── episodic/
+    ├── semantic/
+    └── procedural/</code></pre>
+
+        <h2>Quick Start</h2>
+        <pre><code><span class="token-comment"># Build and start AXON</span>
+<span class="token-operator">$</span> cd axon
+<span class="token-operator">$</span> mk axon-build
+<span class="token-operator">$</span> ./bin/axon <span class="token-operator">-p</span> <span class="token-number">17020</span>
+
+<span class="token-comment"># Mount the 9P filesystem</span>
+<span class="token-operator">$</span> 9p <span class="token-operator">-a</span> localhost!<span class="token-number">17020</span> mount /mnt/axon
+
+<span class="token-comment"># Search the knowledge base</span>
+<span class="token-operator">$</span> <span class="token-keyword">echo</span> <span class="token-string">"sound waves"</span> > /mnt/axon/encyclopedia/search/query
+<span class="token-operator">$</span> cat /mnt/axon/encyclopedia/search/results
+
+<span class="token-comment"># Process files through inbox</span>
+<span class="token-operator">$</span> cp email.txt /mnt/axon/inbox/incoming/
+<span class="token-operator">$</span> <span class="token-keyword">echo</span> <span class="token-string">'process_inbox'</span> > /mnt/axon/ctl
+
+<span class="token-comment"># Check mind status</span>
+<span class="token-operator">$</span> cat /mnt/axon/minds/status
+<span class="token-operator">$</span> cat /mnt/axon/minds/literal/status</code></pre>
+
+        <h2>Multi-Mind Architecture</h2>
+        <p>AXON uses multiple specialized "minds" (AI agents) to extract and verify facts:</p>
+        <ul>
+            <li><b>Literal:</b> Direct fact extraction from source text</li>
+            <li><b>Skeptic:</b> Questions assumptions and identifies potential contradictions</li>
+            <li><b>Synthesizer:</b> Combines multiple facts into coherent understanding</li>
+            <li><b>Pattern Matcher:</b> Identifies patterns and relationships across entries</li>
+            <li><b>Questioner:</b> Generates relevant questions to guide further exploration</li>
+        </ul>
+        <p>Each mind operates independently and reports to shared consensus files, enabling transparent reasoning and contradiction detection.</p>
     </section>
 
     <section id="libraries">
