@@ -19,8 +19,9 @@ cd "$SITE_DIR"
 
 # Publish main site (index.html + style.css + assets + lotus folder)
 echo "Publishing main site to waozi.srht.site, waozi.xyz, www.waozi.xyz..."
-tar -C waozi -cvz index.html style.css wao.jpg icons/ manifest.json browserconfig.xml lotus/ -f main.tar.gz
-ln -sf waozi/style.css style.css 2>/dev/null || true
+cd waozi
+tar -cvz index.html ../style.css wao.jpg icons/ manifest.json browserconfig.xml lotus/ > ../main.tar.gz
+cd ..
 for domain in "$USERNAME.srht.site" "waozi.xyz" "www.waozi.xyz"; do
     echo "Uploading to $domain..."
     hut pages publish -d "$domain" main.tar.gz
