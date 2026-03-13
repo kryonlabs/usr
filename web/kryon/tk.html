@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8" />
+<head>
+    <title>TK - Toolkit - Kryon Labs</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TK: Plan 9-style UI Toolkit with synthetic filesystem interface. Widget rendering, event handling, layout management, and complete UI component library.">
+    <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+
+    <header>
+        <a href="index.html"><img src="logo.png" alt="Kryon Labs Logo" /></a>
+        <h1><a href="index.html">Kryon Labs</a></h1>
+        <p>TK: Toolkit</p>
+    </header>
+
+    <nav>
+        <a href="index.html">← Back to Projects</a>
+    </nav>
+
+    <section>
+        <h1>TK: Toolkit</h1>
+        <p><b>TK</b> is a Plan 9-style UI toolkit that provides widget rendering, event handling, layout management, and a complete UI component library. TK implements a <b>synthetic UI filesystem</b> using the 9P2000 protocol — the entire interface is a tree of files.</p>
+
+        <h2>Synthetic UI Filesystem</h2>
+        <p>TK implements a complete <b>synthetic UI filesystem</b> using the 9P2000 protocol. The entire interface is a tree of files — every widget is a directory, every property is a file, every event is a file read. This "Synthetic UI" approach enables universal deployment through a simple, elegant interface.</p>
+        <p>Three core principles define TK:</p>
+        <ul>
+            <li><b>Synthetic UI:</b> The entire interface is a filesystem — widgets are directories, properties are files, events are file reads</li>
+            <li><b>Universal Protocol:</b> 9P2000 provides a language-agnostic wire protocol — any language that speaks files speaks TK</li>
+            <li><b>Platform Independence:</b> The same C library compiles and runs on Linux, Android, 9front, and any POSIX system</li>
+        </ul>
+
+        <h2>Widget Library</h2>
+        <p>TK provides a comprehensive set of UI widgets:</p>
+        <ul>
+            <li><b>Basic:</b> Button, Label, Text Input, Text Area</li>
+            <li><b>Layout:</b> Grid, Flex, Stack, Tabs</li>
+            <li><b>Containers:</b> Window, Panel, Scroll View</li>
+            <li><b>Input:</b> Slider, Dropdown, Checkbox, Radio</li>
+            <li><b>Display:</b> Image, Progress Bar, Separator</li>
+        </ul>
+
+        <h2>Dual-Mode Architecture</h2>
+        <p>TK operates in two distinct modes:</p>
+        <img src="architecture.svg" alt="TK Dual-Mode Architecture Diagram" style="width: 100%; max-width: 800px; height: auto; display: block; margin: 1.5rem auto; border: 1px solid #a8a498; border-radius: 4px;"/>
+        <p><b>CPU Server Mode:</b> Run TK on Linux/Android/BSD with a TCP listener. Drawterm clients connect remotely for network-transparent sessions.</p>
+        <p><b>Native Mode:</b> Run TK on 9front with kernel pipes. Integrates directly with rio window management and native graphics.</p>
+
+        <h2>Code Example</h2>
+        <p>A complete "Hello TK" app demonstrating the synthetic filesystem approach. The <b>same code runs on both modes</b> — CPU Server or Native:</p>
+        <pre><code><span class="token-comment">-- controller.lua — Direct 9P filesystem interaction</span>
+<span class="token-keyword">local</span> tk <span class="token-operator">=</span> require(<span class="token-string">"tk"</span>)
+
+<span class="token-comment"># Mount the synthetic UI filesystem</span>
+tk.<span class="token-function">mount</span>(<span class="token-string">"/mnt/tk"</span>)
+
+<span class="token-keyword">local</span> count <span class="token-operator">=</span> <span class="token-number">0</span>
+
+<span class="token-comment"># Create a simple window with label and button</span>
+tk.<span class="token-function">write</span>(<span class="token-string">"/mnt/tk/windows/main/title"</span>, <span class="token-string">"Greeting App"</span>)
+
+<span class="token-comment"># Add widgets as directory/file operations</span>
+tk.<span class="token-function">mkdir</span>(<span class="token-string">"/mnt/tk/widgets/greeting"</span>)
+tk.<span class="token-function">write</span>(<span class="token-string">"/mnt/tk/widgets/greeting/type"</span>, <span class="token-string">"label"</span>)
+tk.<span class="token-function">write</span>(<span class="token-string">"/mnt/tk/widgets/greeting/text"</span>, <span class="token-string">"Awaiting input..."</span>)
+
+<span class="token-comment"># Watch for events via file reads</span>
+<span class="token-keyword">while</span> <span class="token-keyword">true</span> <span class="token-keyword">do</span>
+    <span class="token-keyword">local</span> event <span class="token-operator">=</span> tk.<span class="token-function">read</span>(<span class="token-string">"/mnt/tk/events"</span>)
+    <span class="token-keyword">if</span> event.widget <span class="token-operator">==</span> <span class="token-string">"submit_btn"</span> <span class="token-keyword">then</span>
+        count <span class="token-operator">=</span> count <span class="token-operator">+</span> <span class="token-number">1</span>
+        tk.<span class="token-function">write</span>(<span class="token-string">"/mnt/tk/widgets/greeting/text"</span>,
+                     <span class="token-string">"Hello, "</span> <span class="token-operator">..</span> event.value <span class="token-operator">..</span> <span class="token-string">"!"</span>)
+    <span class="token-keyword">end</span>
+<span class="token-keyword">end</span></code></pre>
+
+        <h2>CLI Tool (tjk)</h2>
+        <p>TK includes a CLI tool called <b>tjk</b> for managing UI components and resources:</p>
+        <pre><code><span class="token-comment"># Build and use tjk</span>
+<span class="token-operator">$</span> cd tk
+<span class="token-operator">$</span> mk
+<span class="token-operator">$</span> ./bin/tjk <span class="token-operator">--</span>help</code></pre>
+
+        <h2>Links</h2>
+        <p>
+            <a href="wm.html">WM (Window Manager) →</a> |
+            <a href="mu.html">Mu (Kernel) →</a> |
+            <a href="https://github.com/kryonlabs/taijios">GitHub Repository</a> |
+            <a href="index.html">Back to Projects</a>
+        </p>
+    </section>
+
+    <footer>
+        KRYONLABS.COM // EST. 2026 // EVERYTHING IS A FILE
+        <center>
+            <a href="https://waozi.xyz">☯</a>
+        </center>
+    </footer>
+
+</body>

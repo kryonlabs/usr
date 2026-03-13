@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8" />
+<head>
+    <title>WM - Window Manager - Kryon Labs</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WM: Plan 9-style Window Manager using bind mount namespaces for per-window isolation. Integrates with Mu kernel for graphics.">
+    <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+
+    <header>
+        <a href="index.html"><img src="logo.png" alt="Kryon Labs Logo" /></a>
+        <h1><a href="index.html">Kryon Labs</a></h1>
+        <p>WM: Window Manager</p>
+    </header>
+
+    <nav>
+        <a href="index.html">← Back to Projects</a>
+    </nav>
+
+    <section>
+        <h1>WM: Window Manager</h1>
+        <p><b>WM</b> is a Plan 9-style window manager that implements rio-style namespaces where each window can have its own isolated /dev devices through bind mounts. WM connects to Mu for graphics and provides a 9P2000 filesystem interface for window management.</p>
+
+        <h2>Architecture</h2>
+        <p>WM cleanly separates concerns into multiple components:</p>
+        <ul>
+            <li><b>Window Management:</b> Manages window lifecycle, positioning, and compositing</li>
+            <li><b>Namespace Isolation:</b> Each window gets its own namespace with isolated /dev devices</li>
+            <li><b>9P Filesystem Interface:</b> Complete window management through 9P operations</li>
+            <li><b>Graphics Integration:</b> Uses Mu's /dev/draw, /dev/screen, /dev/mouse, and /dev/kbd</li>
+        </ul>
+
+        <h2>Namespace-Based Isolation</h2>
+        <p>Each window gets its own namespace where /dev/screen points to that window's virtual devices through bind mounts, just like Plan 9's rio. This allows:</p>
+        <ul>
+            <li>Per-window device isolation</li>
+            <li>Nested window managers in isolated namespaces</li>
+            <li>Composability and separation of concerns</li>
+        </ul>
+
+        <h2>Integration with Mu</h2>
+        <p>WM connects to Mu as a 9P client, using Mu's graphics devices for rendering:</p>
+        <ul>
+            <li><b>/dev/draw:</b> Drawing context for each window</li>
+            <li><b>/dev/screen:</b> Screen buffer for pushing pixels</li>
+            <li><b>/dev/mouse:</b> Mouse input events</li>
+            <li><b>/dev/kbd:</b> Keyboard input events</li>
+        </ul>
+
+        <h2>Quick Start</h2>
+        <pre><code><span class="token-comment"># Build and start Mu (kernel)</span>
+<span class="token-operator">$</span> mk
+<span class="token-operator">$</span> ./bin/mu <span class="token-operator">--</span>port <span class="token-number">17010</span>
+
+<span class="token-comment"># In another terminal, build and start WM</span>
+<span class="token-operator">$</span> cd wm
+<span class="token-operator">$</span> mk
+<span class="token-operator">$</span> ./bin/wm <span class="token-operator">--</span>mu tcp!localhost!<span class="token-number">17010</span></code></pre>
+
+        <h2>Links</h2>
+        <p>
+            <a href="tk.html">TK (Toolkit) →</a> |
+            <a href="mu.html">Mu (Kernel) →</a> |
+            <a href="https://github.com/kryonlabs/taijios">GitHub Repository</a> |
+            <a href="index.html">Back to Projects</a>
+        </p>
+    </section>
+
+    <footer>
+        KRYONLABS.COM // EST. 2026 // EVERYTHING IS A FILE
+        <center>
+            <a href="https://waozi.xyz">☯</a>
+        </center>
+    </footer>
+
+</body>

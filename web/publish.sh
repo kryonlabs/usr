@@ -32,7 +32,7 @@ echo ""
 # Publish Kryon Labs site
 echo "Publishing Kryon Labs to kryonlabs.com and www.kryonlabs.com..."
 cd kryon
-tar -cvz index.html appl.html axon.html marrow.html sys.html uxn9.html lu9.html kryon.html lotus/ ../style.css architecture.svg logo.png 5bitcube.jpg icons/ manifest.json browserconfig.xml > ../kryonlabs.tar.gz
+tar -cvz index.html appl.html axon.html mu.html sys.html uxn9.html lu9.html tk.html wm.html lotus/ ../style.css architecture.svg logo.png 5bitcube.jpg icons/ manifest.json browserconfig.xml > ../kryonlabs.tar.gz
 cd ..
 for domain in "kryonlabs.com" "www.kryonlabs.com"; do
     echo "Uploading to $domain..."

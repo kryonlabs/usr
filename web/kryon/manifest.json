@@ -1,7 +1,7 @@
 {
  "name": "Kryon Labs",
  "short_name": "KryonLabs",
- "description": "Kryon Labs develops open-source software inspired by Plan 9: marrow, kryon, lib9, uxn9, lu9, and applications",
+ "description": "Kryon Labs develops open-source software inspired by Plan 9: mu, tk, wm, lib9, uxn9, lu9, and applications",
  "icons": [
   {
    "src": "\/icons\/android-icon-36x36.png",

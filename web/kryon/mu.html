@@ -2,10 +2,10 @@
 <html lang="en">
 <meta charset="utf-8" />
 <head>
-    <title>Marrow - Kryon Labs</title>
+    <title>Mu - Kryon Labs</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Marrow: Portable distributed kernel with 9P2000 server, authentication, service registry, CPU server, and graphics devices">
+    <meta name="description" content="Mu: Portable microkernel with 9P2000 server, authentication, service registry, CPU server, and graphics devices">
     <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
@@ -29,7 +29,7 @@
     <header>
         <a href="index.html"><img src="logo.png" alt="Kryon Labs Logo" /></a>
         <h1><a href="index.html">Kryon Labs</a></h1>
-        <p>Marrow: Portable Distributed Kernel</p>
+        <p>Mu: Portable Microkernel</p>
     </header>
 
     <nav>
@@ -37,8 +37,8 @@
     </nav>
 
     <section>
-        <h1>Marrow: Portable Distributed Kernel</h1>
-        <p><b>Marrow</b> is a headless 9P-compatible kernel providing authentication, service registry, CPU server, and graphics devices. Marrow serves as the substrate for distributed Plan 9 computing on modern systems.</p>
+        <h1>Mu: Portable Microkernel</h1>
+        <p><b>Mu</b> is a headless 9P-compatible kernel providing authentication, service registry, CPU server, and graphics devices. Mu serves as the substrate for distributed Plan 9 computing on modern systems.</p>
 
         <h2>Core Components</h2>
         <ul>
@@ -51,18 +51,18 @@
         </ul>
 
         <h2>Architecture</h2>
-        <p>Marrow provides a portable 9P2000 kernel that runs on Linux and other POSIX systems. It serves as the foundation for network-transparent Plan 9 computing, allowing clients like drawterm to connect from any operating system.</p>
+        <p>Mu provides a portable 9P2000 kernel that runs on Linux and other POSIX systems. It serves as the foundation for network-transparent Plan 9 computing, allowing clients like drawterm to connect from any operating system.</p>
 
         <h2>Quick Start</h2>
-        <pre><code><span class="token-comment"># Build and run Marrow</span>
-<span class="token-operator">$</span> make
-<span class="token-operator">$</span> ./marrow <span class="token-operator">--</span>port <span class="token-number">17011</span>
+        <pre><code><span class="token-comment"># Build and run Mu</span>
+<span class="token-operator">$</span> mk
+<span class="token-operator">$</span> ./mu <span class="token-operator">--</span>port <span class="token-number">17011</span>
 
 <span class="token-comment"># Connect with drawterm</span>
 <span class="token-operator">$</span> drawterm <span class="token-operator">-h</span> localhost <span class="token-operator">-a</span> tcp!localhost!<span class="token-number">17011</span></code></pre>
 
         <h2>Service Registry</h2>
-        <p>Marrow includes a built-in service registry that allows dynamic registration and discovery of network services:</p>
+        <p>Mu includes a built-in service registry that allows dynamic registration and discovery of network services:</p>
         <pre><code><span class="token-comment"># Register a service</span>
 <span class="token-operator">$</span> <span class="token-keyword">echo</span> <span class="token-string">"register myservice display"</span> | 9p write tcp!localhost!<span class="token-number">17011</span>/svc/ctl
 
@@ -71,7 +71,7 @@
 
         <h2>Links</h2>
         <p>
-            <a href="https://github.com/kryonlabs/marrow">GitHub Repository</a> |
+            <a href="https://github.com/kryonlabs/mu">GitHub Repository</a> |
             <a href="index.html">Back to Projects</a>
         </p>
     </section>
