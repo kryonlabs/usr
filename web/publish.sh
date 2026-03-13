@@ -19,9 +19,8 @@ cd "$SITE_DIR"
 
 # Publish main site (index.html + style.css + assets + lotus folder)
 echo "Publishing main site to waozi.srht.site, waozi.xyz, www.waozi.xyz..."
-cd waozi
-tar -cvz index.html ../style.css wao.jpg icons/ manifest.json browserconfig.xml lotus/ > ../main.tar.gz
-cd ..
+tar -C waozi -cvz index.html style.css wao.jpg icons/ manifest.json browserconfig.xml lotus/ -f main.tar.gz
+ln -sf waozi/style.css style.css 2>/dev/null || true
 for domain in "$USERNAME.srht.site" "waozi.xyz" "www.waozi.xyz"; do
     echo "Uploading to $domain..."
     hut pages publish -d "$domain" main.tar.gz
@@ -32,7 +31,7 @@ echo ""
 # Publish Kryon Labs site
 echo "Publishing Kryon Labs to kryonlabs.com and www.kryonlabs.com..."
 cd kryon
-tar -cvz index.html ../style.css architecture.svg logo.png 5bitcube.jpg icons/ manifest.json browserconfig.xml > ../kryonlabs.tar.gz
+tar -cvz index.html appl.html axon.html marrow.html sys.html uxn9.html lu9.html kryon.html lotus/ ../style.css architecture.svg logo.png 5bitcube.jpg icons/ manifest.json browserconfig.xml > ../kryonlabs.tar.gz
 cd ..
 for domain in "kryonlabs.com" "www.kryonlabs.com"; do
     echo "Uploading to $domain..."

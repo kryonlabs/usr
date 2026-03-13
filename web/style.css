@@ -282,6 +282,46 @@ nav a {
     font-size: 0.95rem;
 }
 
+/* Sub-card for nested projects */
+.sub-card {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f4f0e6 0%, #ece8dc 100%);
+    border: 1px solid #c8c4b8;
+    border-left: 4px solid #3a5c8b;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sub-card:hover {
+    transform: translateX(2px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+}
+
+.sub-card h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: #3a5c8b;
+    display: flex;
+    align-items: center;
+}
+
+.sub-card h4::before {
+    content: "↳";
+    margin-right: 0.5rem;
+    color: #5c3a8b;
+    font-size: 0.85rem;
+}
+
+.sub-card p {
+    font-size: 0.85rem;
+    margin: 0;
+    color: #5a5a5a;
+    line-height: 1.5;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .project-grid {
