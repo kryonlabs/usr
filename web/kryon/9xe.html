@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8" />
+<head>
+    <title>9xe - Kryon Labs</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="9xe is a Plan 9 binary execution layer with SDL2 graphics support.">
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="logo.png" alt="Kryon Labs Logo" /></a>
+        <h1><a href="index.html">Kryon Labs</a></h1>
+        <p>9xe Execution Layer</p>
+    </header>
+
+    <nav>
+        <a href="index.html">← Back to Projects</a>
+    </nav>
+
+    <section>
+        <h1>9xe - Plan 9 Binary Execution Layer</h1>
+
+        <p><b>9xe</b> is a Plan 9 binary execution layer written in Go. It provides CPU emulation, 66 Plan 9 syscalls, and SDL2 graphics backend for running Plan 9 a.out binaries across different platforms.</p>
+
+        <h2>Architecture</h2>
+        <pre><code>Plan 9 Binaries (a.out)
+         ↓ CPU Emulation (Unicorn)
+       9xe Syscall Layer (66 syscalls)
+         ↓ Draw Protocol
+       SDL2 Graphics Backend</code></pre>
+
+        <h2>Features</h2>
+        <ul>
+            <li><b>CPU Emulation:</b> x86-64 emulation via Unicorn engine</li>
+            <li><b>Binary Loading:</b> Plan 9 a.out format parser with symbol table support</li>
+            <li><b>Syscalls:</b> 66 Plan 9 syscalls fully implemented</li>
+            <li><b>Draw Protocol:</b> Plan 9 draw protocol implementation</li>
+            <li><b>SDL2 Backend:</b> Cross-platform graphics via SDL2</li>
+            <li><b>9P Server:</b> Virtual /dev/draw filesystem for graphics access</li>
+            <li><b>Memory Management:</b> 64MB virtual RAM at address 0x200000</li>
+        </ul>
+
+        <h2>Directory Structure</h2>
+        <pre><code>9xe/
+├── cmd/9xe/main.go       # Main emulator entry point
+├── lib/aout/            # Plan 9 a.out parser
+├── lib/draw/            # Draw protocol implementation
+├── lib/memdraw/         # In-memory pixel operations
+└── lib/sys/             # Syscall implementations</code></pre>
+
+        <h2>Syscalls Implemented (66)</h2>
+        <p>Plan 9 syscalls including: sysr1, errstr, bind, mount, wstat, chdir, fork, fd2path, pipe, create, dup, open, close, fd2path, read, write, seek, fstat, stat, brk_, removedir, notify, noted, segbrk, sleep, alarm, execl, exited, _forkstat, rendezvous, openfd, mount, die, wait, await, nsec, ttstub, sysmount, unmount, getpid, atnotify, segattach, _p9usetextfregs, segflush, fpactivate, rfork, pendattr, _dmarf, _sysr1, lane, laneattach, lanesum, laneschdup, laneendchild, lanechild, lanestart, lanecheckpoint, lanerecover</p>
+
+        <h2>Draw Protocol</h2>
+        <pre><code>/dev/draw/
+├── new        # Allocate new image
+├── [n]/       # Image directory
+│   ├── ctl    # Image control
+│   ├── data   # Image data
+│   └── refresh # Refresh display</code></pre>
+
+        <h2>Usage</h2>
+        <pre><code># Build 9xe
+cd 9xe
+go build -o bin/9xe ./cmd/9xe
+
+# Run Plan 9 binary
+./bin/9xe /path/to/plan9/binary</code></pre>
+
+        <h2>Integration</h2>
+        <p>9xe provides graphics backend for Rio and Kry:</p>
+        <ul>
+            <li>Rio uses 9xe's draw server for window composition</li>
+            <li>Kry uses 9xe's draw operations for widget rendering</li>
+            <li>Legacy Plan 9 apps connect via /dev/draw</li>
+        </ul>
+
+        <h2>Dependencies</h2>
+        <ul>
+            <li>github.com/veandco/go-sdl2 - SDL2 bindings</li>
+            <li>github.com/unicorn-engine/unicorn - CPU emulation</li>
+        </ul>
+
+        <h2>Links</h2>
+        <p>
+            <a href="https://github.com/kryonlabs/9xe">GitHub Repository</a> |
+            <a href="index.html">Back to Kryon Labs</a>
+        </p>
+    </section>
+
+    <footer>
+        KRYONLABS.COM // EST. 2026 // EVERYTHING IS A FILE
+        <center>
+            <a href="index.html">⚡</a>
+        </center>
+    </footer>
+</body>
+</html>

@@ -39,26 +39,32 @@
     <section>
 
         <h1>What is Taiji OS?</h1>
-        <p><b>TaijiOS</b> is a meta repository combining <b>Marrow</b> (portable distributed kernel), <b>Kryon</b> (Plan 9-style window manager), <b>AXON</b> (file-based AI), and other modules into a complete operating system. It runs both in emulation (Linux/Android/BSD) and natively on bare metal.</p>
+        <p><b>TaijiOS</b> is a Plan 9-based operating system built with Go, featuring a modular architecture with <b>9xe</b> (Plan 9 execution layer), <b>rio</b> (window manager), and <b>kry</b> (UI toolkit). It provides a modern implementation of Plan 9 principles with 9P filesystem interfaces throughout.</p>
 
-        <h2>Features</h2>
+        <h2>Architecture</h2>
         <ul>
-            <li><b>9P:</b> Every resource (CPU, file, device) is shared via the 9P protocol.</li>
-            <li><b>AXON:</b> File-based AI encyclopedia with multi-mind fact extraction. Knowledge base accessible through filesystem operations.</li>
-            <li><b>Modern Development:</b> Features <a href="https://kryonlabs.com/window-manager.html">Kryon</a>, a filesystem-backed declarative UI system that makes building graphical interfaces as simple as reading and writing files.</li>
-            <li><b>UXN integration:</b> Varvara virtual machine is integrated on the kernel level allowing you to emulate 8-bit uxntal applications natively.</li>
-            <li><b>Easy Emulation:</b> Designed for seamless emulation across different platforms.</li>
-            <li><b>Bare Metal Performance:</b> Optimized for direct hardware access and maximum efficiency.</li>
-            <li><b>Customizability:</b> Bringing back simple windows 2000 era customization.</li>
+            <li><b>9xe:</b> Plan 9 binary execution layer with SDL2 graphics backend. Runs Plan 9 a.out binaries via CPU emulation.</li>
+            <li><b>rio:</b> Go-based window manager reimplementing 9front rio. Provides window management, event handling, and 9P filesystem interface.</li>
+            <li><b>kry:</b> UI toolkit extending rio with 88 widget types. Filesystem-based API for declarative UI creation.</li>
+            <li><b>9P Protocol:</b> Every resource (windows, widgets, events) is exposed via 9P filesystem at /mnt/wm.</li>
+            <li><b>Legacy App Support:</b> Draw file bridge allows apps like acme to run unmodified via 9P draw protocol.</li>
+            <li><b>Modular Design:</b> Each component is an independent Go module that can be used standalone or combined.</li>
         </ul>
 
-        <h2>Quick Start (NixOS)</h2>
-        <pre><code><span class="token-comment"># Clone the repository with submodules</span>
-<span class="token-operator">$</span> git clone <span class="token-operator">--</span>recursive https://github.com/KryonLabs/taiji.git
+        <h2>Quick Start</h2>
+        <pre><code><span class="token-comment"># Clone the repository</span>
+<span class="token-operator">$</span> git clone https://github.com/KryonLabs/TaijiOS.git
 <span class="token-operator">$</span> cd TaijiOS
 
-<span class="token-comment"># Enter the build shell</span>
-<span class="token-operator">$</span> nix<span class="token-operator">-</span>shell
+<span class="token-comment"># Initialize submodules</span>
+<span class="token-operator">$</span> git submodule update --init --recursive
+
+<span class="token-comment"># Build all components</span>
+<span class="token-operator">$</span> make all
+
+<span class="token-comment"># Run rio window manager</span>
+<span class="token-operator">$</span> make dev-rio
+</code></pre>
 
         <h2>Links</h2>
         <p>

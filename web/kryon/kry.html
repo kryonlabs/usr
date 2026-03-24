@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8" />
+<head>
+    <title>Kry - Kryon Labs</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kry is a filesystem-based UI toolkit for Plan 9 with 88 widget types.">
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="logo.png" alt="Kryon Labs Logo" /></a>
+        <h1><a href="index.html">Kryon Labs</a></h1>
+        <p>Kry UI Toolkit</p>
+    </header>
+
+    <nav>
+        <a href="index.html">← Back to Projects</a>
+    </nav>
+
+    <section>
+        <h1>Kry - Plan 9 UI Toolkit</h1>
+
+        <p><b>Kry</b> is a filesystem-based UI toolkit that extends Rio windows with 88 different widget types. It provides a declarative UI syntax and complete control via 9P filesystem operations.</p>
+
+        <h2>Architecture</h2>
+        <pre><code>Kry (UI Toolkit)
+  - 88 widget types
+  - Layout managers
+  - Event handling
+      ↓ Imports
+   Rio (Window Manager)
+      ↓ Draw Protocol
+   9xe (Execution Layer)</code></pre>
+
+        <h2>Widget Types (88 Total)</h2>
+        <ul>
+            <li><b>Input (24):</b> text, password, checkbox, radio, dropdown, slider, etc.</li>
+            <li><b>Buttons (8):</b> button, submit, icon, FAB, segmented, etc.</li>
+            <li><b>Display (11):</b> label, heading, image, progress bar, badge, etc.</li>
+            <li><b>Containers (11):</b> container, box, frame, scroll, split, tab, etc.</li>
+            <li><b>Lists (8):</b> list item, tile, view, grid, tree, chip, tag</li>
+            <li><b>Navigation (8):</b> menu bar, toolbar, nav bar, breadcrumb, etc.</li>
+            <li><b>Menus (4):</b> dropdown, context, cascading, popup</li>
+            <li><b>Forms (4):</b> form, group, validation, input group</li>
+            <li><b>Windows (4):</b> window, dialog, scaffold, fullscreen</li>
+            <li><b>Specialized (8):</b> canvas, SVG, chart, color picker, calendar, etc.</li>
+        </ul>
+
+        <h2>Declarative UI</h2>
+        <pre><code>window "My Form" {
+    rect: 100 100 400 300
+
+    label "Name:" {
+        rect: 10 10 380 30
+    }
+
+    text-input nameInput {
+        rect: 10 40 380 60
+        placeholder: "Enter your name"
+    }
+
+    button submitBtn {
+        rect: 10 70 100 90
+        text: "Submit"
+    }
+}</code></pre>
+
+        <h2>Filesystem Interface</h2>
+        <pre><code>/mnt/wm/win/[id]/kry/
+├── type              # Window type
+└── wg/               # Widget directories
+    ├── nameInput/
+    │   ├── type      # "text-input"
+    │   ├── text      # Current value
+    │   ├── value     # Widget state
+    │   └── rect      # "10 40 380 60"
+    └── submitBtn/
+        ├── type      # "button"
+        ├── text      # "Submit"
+        └── rect      # "10 70 100 90"</code></pre>
+
+        <h2>Layout System</h2>
+        <ul>
+            <li><b>Row Layout:</b> Horizontal arrangement with gaps</li>
+            <li><b>Column Layout:</b> Vertical arrangement with gaps</li>
+            <li><b>Grid Layout:</b> 2D grid with configurable columns</li>
+            <li><b>Absolute Layout:</b> Manual positioning</li>
+        </ul>
+
+        <h2>Usage</h2>
+        <pre><code>import "github.com/kryonlabs/kry/lib/kry"
+
+// Create Kry window
+kw, err := kry.CreateKryWindow(wm, "My Window")
+
+// Add widgets
+label, _ := kw.AddWidget(kry.LabelWidget, "nameLabel")
+label.SetProperty("text", "Name:")
+label.SetProperty("rect", "10 10 380 30")
+
+input, _ := kw.AddWidget(kry.TextInputWidget, "nameInput")
+input.SetProperty("placeholder", "Enter your name")
+
+button, _ := kw.AddWidget(kry.ButtonWidget, "submitBtn")
+button.SetProperty("text", "Submit")
+button.OnClick(func() {
+    value := input.GetProperty("value")
+    fmt.Println("Submitted:", value)
+})</code></pre>
+
+        <h2>Dependencies</h2>
+        <ul>
+            <li><a href="rio.html">Rio</a> - Window manager (base)</li>
+            <li><a href="9xe.html">9xe</a> - Draw protocol and graphics</li>
+        </ul>
+
+        <h2>Links</h2>
+        <p>
+            <a href="https://github.com/kryonlabs/kry">GitHub Repository</a> |
+            <a href="index.html">Back to Kryon Labs</a>
+        </p>
+    </section>
+
+    <footer>
+        KRYONLABS.COM // EST. 2026 // EVERYTHING IS A FILE
+        <center>
+            <a href="index.html">⚡</a>
+        </center>
+    </footer>
+</body>
+</html>
