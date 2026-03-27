@@ -95,18 +95,28 @@
         <h1>Filesystem Interface</h1>
         <p>Control every aspect of your UI through the filesystem. Read and write widget properties as files.</p>
 
-        <pre><code>/mnt/wm/win/[id]/kryon/
-├── type              <span class="token-comment"># Window type</span>
-└── wg/               <span class="token-comment"># Widget directories</span>
-    ├── nameInput/
-    │   ├── type      <span class="token-comment"># "text-input"</span>
-    │   ├── text      <span class="token-comment"># Current value</span>
-    │   ├── value     <span class="token-comment"># Widget state</span>
-    │   └── rect      <span class="token-comment"># "10 40 380 60"</span>
-    └── submitBtn/
-        ├── type      <span class="token-comment"># "button"</span>
-        ├── text      <span class="token-comment"># "Submit"</span>
-        └── rect      <span class="token-comment"># "10 70 100 90"</span></code></pre>
+        <pre><code>/mnt/wsys/[id]/
+├── mode              <span class="token-comment"># Switch between "draw" and "wg" modes</span>
+├── label             <span class="token-comment"># Window label/title (read/write)</span>
+├── rect              <span class="token-comment"># Window geometry (read/write)</span>
+├── visible           <span class="token-comment"># Window visibility (1 or 0)</span>
+├── kbd               <span class="token-comment"># Keyboard input (both modes)</span>
+├── mouse             <span class="token-comment"># Mouse input (both modes)</span>
+├── wctl              <span class="token-comment"># Window control: hide, show, move, resize (both modes)</span>
+├── wg/               <span class="token-comment"># Widget directories (wg mode only)</span>
+│   ├── nameInput/
+│   │   ├── type      <span class="token-comment"># "text-input"</span>
+│   │   ├── text      <span class="token-comment"># Current value</span>
+│   │   ├── value     <span class="token-comment"># Widget state</span>
+│   │   └── rect      <span class="token-comment"># "10 40 380 60"</span>
+│   └── submitBtn/
+│       ├── type      <span class="token-comment"># "button"</span>
+│       ├── text      <span class="token-comment"># "Submit"</span>
+│       └── rect      <span class="token-comment"># "10 70 100 90"</span>
+├── text              <span class="token-comment"># Text buffer (draw mode only)</span>
+├── cons              <span class="token-comment"># Console output (draw mode only)</span>
+├── consctl           <span class="token-comment"># Console control (draw mode only)</span>
+└── window            <span class="token-comment"># Window image bitmap (draw mode only)</span></code></pre>
     </section>
 
     <section>
@@ -151,16 +161,16 @@
         <p>Kryon is written in Go, making it easy to cross-compile for any platform:</p>
 
         <pre><code><span class="token-comment"># Build for current platform</span>
-<span class="token-keyword">go build</span> ./cmd/kry
+<span class="token-keyword">go build</span> -o wm ./cmd/wm
 
 <span class="token-comment"># Cross-compile for Windows</span>
-<span class="token-keyword">GOOS=windows GOARCH=amd64 go build</span> ./cmd/kry
+<span class="token-keyword">GOOS=windows GOARCH=amd64 go build</span> -o wm.exe ./cmd/wm
 
 <span class="token-comment"># Cross-compile for macOS</span>
-<span class="token-keyword">GOOS=darwin GOARCH=amd64 go build</span> ./cmd/kry
+<span class="token-keyword">GOOS=darwin GOARCH=amd64 go build</span> -o wm ./cmd/wm
 
 <span class="token-comment"># Cross-compile for Linux ARM</span>
-<span class="token-keyword">GOOS=linux GOARCH=arm64 go build</span> ./cmd/kry</code></pre>
+<span class="token-keyword">GOOS=linux GOARCH=arm64 go build</span> -o wm ./cmd/wm</code></pre>
 
         <p style="margin-top: 1.5rem;">Then use the Go API to create windows and widgets:</p>
 
@@ -188,7 +198,7 @@ button.<span class="token-function">OnClick</span>(<span class="token-keyword">f
     <section>
         <h1>Get Started</h1>
         <p>
-            <a href="https://github.com/kryonlabs/kryon">GitHub Repository</a> |
+            <a href="https://github.com/kryonlabs/taijios">GitHub Repository</a> |
             <a href="docs.html">Documentation</a>
         </p>
     </section>
