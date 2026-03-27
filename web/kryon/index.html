@@ -2,10 +2,10 @@
 <html lang="en">
 <meta charset="utf-8" />
 <head>
-    <title>Kryon - Filesystem-Based UI Toolkit</title>
+    <title>Kryon - Lightweight Cross-Platform UI Toolkit</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kryon is a filesystem-based UI toolkit with 88 widget types for Plan 9-inspired computing.">
+    <meta name="description" content="Kryon is a lightweight cross-platform UI toolkit with 89 widget types. Plan 9-inspired filesystem control, runs on Windows, Linux, macOS, and terminals.">
     <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
@@ -29,14 +29,19 @@
     <header>
         <img src="logo.png" alt="Kryon Labs Logo" />
         <h1>Kryon</h1>
-        <p>Filesystem-Based UI Toolkit</p>
+        <p>Lightweight Cross-Platform UI Toolkit</p>
     </header>
 
     <section>
         <h1>Why Kryon?</h1>
-        <p>Kryon embraces the Plan 9 philosophy: <b>everything is a file</b>. Control your entire UI through filesystem operations — read widget values, write properties, and handle events through 9P. No complex APIs, just simple file I/O.</p>
+        
+        <p>Kryon is a <b>lightweight cross-platform UI toolkit</b> written in Go. Unlike heavy frameworks, Kryon has no runtime dependencies and compiles to a single binary. It brings Plan 9's elegant <b>"everything is a file"</b> philosophy to modern application development — control your entire UI through simple file I/O operations via 9P protocol.</p>
 
-        <h2>88 Widget Types</h2>
+        <p>Deploy to <b>Windows, Linux, macOS</b> via SDL2, use terminals with <b>Sixel graphics</b>, or run on Plan 9 systems. One codebase, multiple platforms — no platform-specific code needed.</p>
+
+        <p style="margin-top: 1rem;"><b>Language-agnostic control:</b> Since the UI is exposed as a filesystem, <i>any programming language</i> can control Kryon — Python, Rust, C, JavaScript, Bash, anything that can read and write files. No language bindings required!</p>
+
+        <h2>89 Widget Types</h2>
         <ul>
             <li><b>Input (24):</b> text, password, checkbox, radio, dropdown, slider, toggle, etc.</li>
             <li><b>Buttons (8):</b> button, submit, icon, FAB, segmented, toggle button, etc.</li>
@@ -49,6 +54,18 @@
             <li><b>Windows (4):</b> window, dialog, scaffold, fullscreen</li>
             <li><b>Specialized (8):</b> canvas, SVG, chart, color picker, calendar, spinner, slider, switch</li>
         </ul>
+    </section>
+
+    <section>
+        <h1>Cross-Platform Support</h1>
+        <p>Kryon runs everywhere Go runs, with multiple rendering backends for different environments:</p>
+        <ul>
+            <li><b>Desktop:</b> Windows, Linux, macOS via SDL2 backend</li>
+            <li><b>Terminal:</b> Sixel-compatible terminals for terminal-based UI</li>
+            <li><b>Plan 9:</b> Native Plan 9 systems via Plan9Draw backend</li>
+            <li><b>Server:</b> Headless rendering for server-side generation</li>
+        </ul>
+        <p style="margin-top: 1rem;">One codebase, multiple platforms — no platform-specific code needed.</p>
     </section>
 
     <section>
@@ -103,17 +120,50 @@
     </section>
 
     <section>
+        <h1>Lightweight by Design</h1>
+        <p>Unlike heavy cross-platform frameworks, Kryon is:</p>
+        <ul>
+            <li><b>No runtime dependencies:</b> Single binary deployment</li>
+            <li><b>Small footprint:</b> Minimal memory and CPU usage</li>
+            <li><b>Fast compilation:</b> Go's build speed for rapid development</li>
+            <li><b>Modular:</b> Use only the backends and widgets you need</li>
+            <li><b>No framework lock-in:</b> Standard Go APIs and patterns</li>
+        </ul>
+    </section>
+
+    <section>
         <h1>Architecture</h1>
-        <pre><code><span class="token-type">Kryon</span> (UI Toolkit)
-  ├── <span class="token-number">88</span> widget types
-  ├── Layout managers
-  ├── Event handling
-  └── 9P filesystem interface</code></pre>
-        <p style="margin-top: 1rem;">Kryon is a standalone, independent toolkit. Use it with any Plan 9-compatible system.</p>
+        <pre><code><span class="token-type">Kryon</span> (Cross-Platform UI Toolkit)
+  ├── <span class="token-number">89</span> widget types
+  ├── Declarative UI syntax (.kry files)
+  ├── State management system
+  ├── Multiple rendering backends:
+  │   ├── SDL2 (Windows, Linux, macOS)
+  │   ├── Sixel (terminal graphics)
+  │   ├── Plan9Draw (Plan 9)
+  │   └── Headless (server-side)
+  └── 9P filesystem control interface</code></pre>
+        <p style="margin-top: 1rem;">Kryon's modular architecture lets you choose the rendering backend that fits your target platform.</p>
     </section>
 
     <section>
         <h1>Usage</h1>
+        <p>Kryon is written in Go, making it easy to cross-compile for any platform:</p>
+
+        <pre><code><span class="token-comment"># Build for current platform</span>
+<span class="token-keyword">go build</span> ./cmd/kry
+
+<span class="token-comment"># Cross-compile for Windows</span>
+<span class="token-keyword">GOOS=windows GOARCH=amd64 go build</span> ./cmd/kry
+
+<span class="token-comment"># Cross-compile for macOS</span>
+<span class="token-keyword">GOOS=darwin GOARCH=amd64 go build</span> ./cmd/kry
+
+<span class="token-comment"># Cross-compile for Linux ARM</span>
+<span class="token-keyword">GOOS=linux GOARCH=arm64 go build</span> ./cmd/kry</code></pre>
+
+        <p style="margin-top: 1.5rem;">Then use the Go API to create windows and widgets:</p>
+
         <pre><code><span class="token-keyword">import</span> <span class="token-string">"github.com/kryonlabs/kryon/lib/kry"</span>
 
 <span class="token-comment">// Create Kryon window</span>

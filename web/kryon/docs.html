@@ -5,7 +5,7 @@
     <title>Documentation - Kryon</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Complete documentation for Kryon filesystem-based UI toolkit">
+    <meta name="description" content="Complete documentation for Kryon lightweight cross-platform UI toolkit. Cross-platform support, widget reference, API documentation.">
 </head>
 <body>
     <header>
@@ -20,7 +20,7 @@
 
     <section>
         <h1>Kryon Documentation</h1>
-        <p>Complete guide to using Kryon, the filesystem-based UI toolkit for Plan 9-inspired systems.</p>
+        <p>Complete guide to using Kryon, a lightweight cross-platform UI toolkit with Plan 9-inspired filesystem control.</p>
     </section>
 
     <section>
@@ -29,10 +29,12 @@
 
         <h2>Requirements</h2>
         <ul>
-            <li>Go 1.25.7 or later</li>
-            <li>Plan 9-compatible window manager (Rio or compatible)</li>
-            <li>9P filesystem support</li>
+            <li>Go 1.25.7 or later (for building Kryon)</li>
+            <li>SDL2 for desktop platforms (Windows, Linux, macOS)</li>
+            <li>Sixel-compatible terminal for terminal UI (optional)</li>
         </ul>
+
+        <p><b>Note:</b> While Kryon is written in Go, you can control the UI from <i>any programming language</i> through the 9P filesystem interface. No bindings needed!</p>
     </section>
 
     <section>
@@ -57,6 +59,29 @@
     <span class="token-comment">// Keep window open</span>
     &lt;-<span class="token-keyword">make</span>(<span class="token-keyword">chan</span> <span class="token-keyword">struct</span>{})
 }</code></pre>
+    </section>
+
+    <section>
+        <h1>Platform Support</h1>
+        <p>Kryon supports multiple platforms through pluggable rendering backends:</p>
+
+        <h2>SDL2 Backend</h2>
+        <p>Full-featured desktop GUI for Windows, Linux, and macOS. Provides hardware-accelerated graphics, input handling, and native window management.</p>
+
+        <h2>Sixel Backend</h2>
+        <p>Terminal-based graphics for Sixel-compatible terminals. Enables GUI applications in terminal environments without X11/Wayland.</p>
+
+        <h2>Plan9Draw Backend</h2>
+        <p>Native Plan 9 graphics support for authentic Plan 9 systems.</p>
+
+        <h2>Headless Backend</h2>
+        <p>In-memory rendering for server-side generation and testing.</p>
+
+        <h2>Cross-Compilation</h2>
+        <p>Use Go's standard cross-compilation to build for any target platform from any development machine.</p>
+
+        <h2>Language-Agnostic Control</h2>
+        <p>While Kryon is written in Go, the filesystem interface means you can control your UI from <i>any programming language</i>. Python, Rust, C, JavaScript, Bash — if it can read and write files, it can control Kryon. No language bindings needed!</p>
     </section>
 
     <section>

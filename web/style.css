@@ -258,14 +258,34 @@ a:active {
 
 /* Section Styling */
 section {
-    margin: 1.5rem 0;
-    padding: 1rem 0;
+    margin: 1rem 0 !important;
+    padding: 1rem 0 !important;
     border-top: 1px solid #b8b8a0;
 }
 
 section:first-of-type {
-    border-top: none;
-    margin-top: 0.5rem;
+    border-top: none !important;
+    margin-top: 0.3rem !important;
+}
+
+/* Reduce list spacing */
+section ul {
+    margin-bottom: 0.5rem !important;
+    margin-top: 0.5rem !important;
+}
+
+section li {
+    margin-bottom: 0.3rem !important;
+}
+
+h1 {
+    margin-top: 0.8rem !important;
+    margin-bottom: 0.8rem !important;
+}
+
+h2 {
+    margin-top: 0.6rem !important;
+    margin-bottom: 0.4rem !important;
 }
 
 /* Hero section */
