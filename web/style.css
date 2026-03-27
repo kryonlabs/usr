@@ -1,7 +1,7 @@
 
-/* The Base "Industrial Paper" */
+/* The Base "HaikuOS Style" */
 html {
-    background-color: #e8e4d8; /* Warm Beige */
+    background-color: #e8e8d0; /* HaikuOS yellow-beige */
     color: #2b2b2b;            /* Soft Black */
     font-family: "Segoe UI", Tahoma, Geneva, sans-serif;
     line-height: 1.6;
@@ -20,9 +20,10 @@ h1 {
     font-weight: 600;
     letter-spacing: -0.5px;
     margin-bottom: 1.5rem;
-    border-bottom: 2px solid #2b2b2b;
+    border-bottom: 2px solid #5c5c5c;
     display: inline-block;     /* Only underlines the text, not the whole screen */
     padding-bottom: 5px;
+    color: #2b2b2b;
 }
 
 h2 {
@@ -30,7 +31,7 @@ h2 {
     font-weight: 600;
     margin-top: 2rem;
     margin-bottom: 1rem;
-    color: #3a5c8b;
+    color: #4a4a4a;
 }
 
 h3 {
@@ -45,7 +46,7 @@ h3 {
 header {
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 3px solid #2b2b2b;
+    border-bottom: 3px solid #5c5c5c;
 }
 
 header h1 {
@@ -56,6 +57,7 @@ header h1 {
     border-bottom: none;
     padding-bottom: 0;
     display: block;
+    color: #2b2b2b;
 }
 
 header p {
@@ -105,24 +107,27 @@ blockquote cite {
 
 /* Code Block Container */
 pre {
-    background-color: #d4d0c4; /* Slightly darker than page background */
-    border: 1px solid #a8a498;
-    border-radius: 4px;
+    background-color: #f0f0e8; /* Light warm code background */
+    border: 1px solid #b8b8a0;
+    border-radius: 6px;
     padding: 1rem;
     margin: 1.5rem 0;
     overflow-x: auto;
     font-family: "Consolas", "Monaco", "Courier New", monospace;
     font-size: 0.9rem;
     line-height: 1.5;
+    color: #2b2b2b;
 }
 
 /* Inline Code */
 code {
     font-family: "Consolas", "Monaco", "Courier New", monospace;
-    background-color: #d4d0c4;
+    background-color: #f0f0e8;
     padding: 0.2rem 0.4rem;
     border-radius: 3px;
     font-size: 0.9em;
+    color: #2b2b2b;
+    border: none;
 }
 
 /* Code blocks inside pre */
@@ -131,6 +136,7 @@ pre code {
     padding: 0;
     border-radius: 0;
     font-size: inherit;
+    border: none;
 }
 
 /* Custom Syntax Highlighting Colors */
@@ -188,15 +194,15 @@ footer {
 
 /* Link Styling */
 a {
-    color: #3a5c8b; /* Dark blue */
+    color: #0066cc; /* HaikuOS blue */
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: border-color 0.15s ease, color 0.15s ease;
 }
 
 a:hover {
-    color: #5c3a8b; /* Dark purple on hover */
-    border-bottom-color: #5c3a8b;
+    color: #004499; /* Darker blue on hover */
+    border-bottom-color: #004499;
 }
 
 a:active {
@@ -206,11 +212,13 @@ a:active {
 
 /* Card Styling */
 .card {
-    border: 1px solid #2b2b2b;
+    border: 1px solid #5c5c5c;
     padding: 1rem;
     margin: 1.5rem auto;
     display: inline-block;
     text-align: center;
+    background-color: #f0f0e8;
+    border-radius: 6px;
 }
 
 /* Project Cards Grid */
@@ -222,22 +230,24 @@ a:active {
 }
 
 .project-grid .card {
-    border: 1px solid #2b2b2b;
+    border: 1px solid #5c5c5c;
     padding: 1.5rem;
     text-align: left;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     display: block;
     margin: 0;
+    background-color: #f0f0e8;
+    border-radius: 6px;
 }
 
 .project-grid .card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .project-grid .card h3 {
     margin-top: 0;
-    color: #3a5c8b;
+    color: #0066cc;
     margin-bottom: 0.5rem;
 }
 
@@ -248,22 +258,23 @@ a:active {
 
 /* Section Styling */
 section {
-    margin: 3rem 0;
-    padding: 2rem 0;
-    border-top: 1px solid #a8a498;
+    margin: 1.5rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid #b8b8a0;
 }
 
 section:first-of-type {
     border-top: none;
+    margin-top: 0.5rem;
 }
 
 /* Hero section */
 .hero {
-    background: linear-gradient(135deg, #e8e4d8 0%, #d4d0c4 100%);
+    background: linear-gradient(135deg, #f0f0e8 0%, #e0e0d0 100%);
     padding: 2rem;
     border-radius: 8px;
     margin: 2rem 0;
-    border: 1px solid #a8a498;
+    border: 1px solid #b8b8a0;
 }
 
 .hero p {
@@ -274,7 +285,7 @@ section:first-of-type {
 nav {
     margin: 1.5rem 0;
     padding: 1rem 0;
-    border-bottom: 1px solid #a8a498;
+    border-bottom: 1px solid #b8b8a0;
 }
 
 nav a {
@@ -286,9 +297,9 @@ nav a {
 .sub-card {
     margin-top: 1rem;
     padding: 1rem;
-    background: linear-gradient(135deg, #f4f0e6 0%, #ece8dc 100%);
-    border: 1px solid #c8c4b8;
-    border-left: 4px solid #3a5c8b;
+    background: linear-gradient(135deg, #f0f0e8 0%, #e8e8d8 100%);
+    border: 1px solid #b8b8a0;
+    border-left: 4px solid #0066cc;
     border-radius: 6px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -303,7 +314,7 @@ nav a {
     font-size: 0.95rem;
     font-weight: 600;
     margin: 0 0 0.5rem 0;
-    color: #3a5c8b;
+    color: #0066cc;
     display: flex;
     align-items: center;
 }
@@ -311,7 +322,7 @@ nav a {
 .sub-card h4::before {
     content: "↳";
     margin-right: 0.5rem;
-    color: #5c3a8b;
+    color: #004499;
     font-size: 0.85rem;
 }
 

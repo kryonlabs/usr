@@ -2,10 +2,10 @@
 <html lang="en">
 <meta charset="utf-8" />
 <head>
-    <title>Kryon Labs</title>
+    <title>Kryon - Filesystem-Based UI Toolkit</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kryon Labs develops open-source software inspired by Plan 9: 9xe, rio, kry, sys, uxn9, axon, lu9, appl, and usr">
+    <meta name="description" content="Kryon is a filesystem-based UI toolkit with 88 widget types for Plan 9-inspired computing.">
     <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
@@ -28,42 +28,123 @@
 
     <header>
         <img src="logo.png" alt="Kryon Labs Logo" />
-        <h1>Kryon Labs</h1>
-        <p>Open-source software inspired by Plan 9</p>
+        <h1>Kryon</h1>
+        <p>Filesystem-Based UI Toolkit</p>
     </header>
-    
-    <section id="about">
-        <div class="hero">
-            <h1>About Kryon Labs</h1>
-            <p>Kryon Labs develops open-source software inspired by the Plan 9 operating system philosophy. We believe that <b>everything is a file</b> — and that simple, composable protocols like 9P enable elegant distributed computing.</p>
-            <p>Our mission is to bring Plan 9's core ideas — the 9P protocol, synthetic filesystems, and namespace-based isolation — to modern systems. We build portable libraries, window managers, emulators, and applications that embrace "the Unix way" taken to its logical conclusion.</p>
-        </div>
+
+    <section>
+        <h1>Why Kryon?</h1>
+        <p>Kryon embraces the Plan 9 philosophy: <b>everything is a file</b>. Control your entire UI through filesystem operations — read widget values, write properties, and handle events through 9P. No complex APIs, just simple file I/O.</p>
+
+        <h2>88 Widget Types</h2>
+        <ul>
+            <li><b>Input (24):</b> text, password, checkbox, radio, dropdown, slider, toggle, etc.</li>
+            <li><b>Buttons (8):</b> button, submit, icon, FAB, segmented, toggle button, etc.</li>
+            <li><b>Display (11):</b> label, heading, image, progress bar, badge, separator, etc.</li>
+            <li><b>Containers (11):</b> container, box, frame, scroll, split, tab, stack, etc.</li>
+            <li><b>Lists (8):</b> list item, tile, view, grid, tree, chip, tag, card</li>
+            <li><b>Navigation (8):</b> menu bar, toolbar, nav bar, breadcrumb, sidebar, etc.</li>
+            <li><b>Menus (4):</b> dropdown menu, context menu, cascading menu, popup</li>
+            <li><b>Forms (4):</b> form, field group, validation, input group</li>
+            <li><b>Windows (4):</b> window, dialog, scaffold, fullscreen</li>
+            <li><b>Specialized (8):</b> canvas, SVG, chart, color picker, calendar, spinner, slider, switch</li>
+        </ul>
     </section>
 
-    <section id="Projects">
-        <h1>Projects</h1>
-        <div class="project-grid">
-            <div class="card">
-                <h3><a href="kry.html">kry &rarr;</a></h3>
-                <p>File based UI toolkit with 88 widget types.</p>
-            </div>
-            <div class="card">
-                <h3><a href="9xe.html">9xe &rarr;</a></h3>
-                <p>Plan 9 binary execution layer with SDL2 graphics. CPU emulation, 66 Plan 9 syscalls, and draw protocol support.</p>
-            </div>
-            <div class="card">
-                <h3><a href="appl.html">appl &rarr;</a></h3>
-                <p>Applications made in kryon including binaural beats generator, habits tracker, and more.</p>
-            </div>
-            <div class="card">
-                <h3><a href="https://github.com/kryonlabs/usr">usr &rarr;</a></h3>
-                <p>User-space utilities, configurations, and website content.</p>
-            </div>
-        </div>
+    <section>
+        <h1>Declarative Syntax</h1>
+        <p>Define your UI with a simple, clean syntax. Kryon handles the rest.</p>
+
+        <pre><code><span class="token-keyword">window</span> <span class="token-string">"My Form"</span> {
+    <span class="token-keyword">rect</span>: <span class="token-number">100 100 400 300</span>
+
+    <span class="token-keyword">label</span> <span class="token-string">"Name:"</span> {
+        <span class="token-keyword">rect</span>: <span class="token-number">10 10 380 30</span>
+    }
+
+    <span class="token-keyword">text-input</span> nameInput {
+        <span class="token-keyword">rect</span>: <span class="token-number">10 40 380 60</span>
+        <span class="token-keyword">placeholder</span>: <span class="token-string">"Enter your name"</span>
+    }
+
+    <span class="token-keyword">button</span> submitBtn {
+        <span class="token-keyword">rect</span>: <span class="token-number">10 70 100 90</span>
+        <span class="token-keyword">text</span>: <span class="token-string">"Submit"</span>
+    }
+}</code></pre>
+    </section>
+
+    <section>
+        <h1>Filesystem Interface</h1>
+        <p>Control every aspect of your UI through the filesystem. Read and write widget properties as files.</p>
+
+        <pre><code>/mnt/wm/win/[id]/kryon/
+├── type              <span class="token-comment"># Window type</span>
+└── wg/               <span class="token-comment"># Widget directories</span>
+    ├── nameInput/
+    │   ├── type      <span class="token-comment"># "text-input"</span>
+    │   ├── text      <span class="token-comment"># Current value</span>
+    │   ├── value     <span class="token-comment"># Widget state</span>
+    │   └── rect      <span class="token-comment"># "10 40 380 60"</span>
+    └── submitBtn/
+        ├── type      <span class="token-comment"># "button"</span>
+        ├── text      <span class="token-comment"># "Submit"</span>
+        └── rect      <span class="token-comment"># "10 70 100 90"</span></code></pre>
+    </section>
+
+    <section>
+        <h1>Flexible Layouts</h1>
+        <ul>
+            <li><b>Row Layout:</b> Horizontal arrangement with configurable gaps</li>
+            <li><b>Column Layout:</b> Vertical arrangement with configurable gaps</li>
+            <li><b>Grid Layout:</b> 2D grid with configurable columns and rows</li>
+            <li><b>Absolute Layout:</b> Manual pixel-perfect positioning</li>
+        </ul>
+    </section>
+
+    <section>
+        <h1>Architecture</h1>
+        <pre><code><span class="token-type">Kryon</span> (UI Toolkit)
+  ├── <span class="token-number">88</span> widget types
+  ├── Layout managers
+  ├── Event handling
+  └── 9P filesystem interface</code></pre>
+        <p style="margin-top: 1rem;">Kryon is a standalone, independent toolkit. Use it with any Plan 9-compatible system.</p>
+    </section>
+
+    <section>
+        <h1>Usage</h1>
+        <pre><code><span class="token-keyword">import</span> <span class="token-string">"github.com/kryonlabs/kryon/lib/kry"</span>
+
+<span class="token-comment">// Create Kryon window</span>
+kw, err := kry.<span class="token-function">CreateKryonWindow</span>(wm, <span class="token-string">"My Window"</span>)
+
+<span class="token-comment">// Add widgets</span>
+label, _ := kw.<span class="token-function">AddWidget</span>(kry.LabelWidget, <span class="token-string">"nameLabel"</span>)
+label.<span class="token-function">SetProperty</span>(<span class="token-string">"text"</span>, <span class="token-string">"Name:"</span>)
+label.<span class="token-function">SetProperty</span>(<span class="token-string">"rect"</span>, <span class="token-string">"10 10 380 30"</span>)
+
+input, _ := kw.<span class="token-function">AddWidget</span>(kry.TextInputWidget, <span class="token-string">"nameInput"</span>)
+input.<span class="token-function">SetProperty</span>(<span class="token-string">"placeholder"</span>, <span class="token-string">"Enter your name"</span>)
+
+button, _ := kw.<span class="token-function">AddWidget</span>(kry.ButtonWidget, <span class="token-string">"submitBtn"</span>)
+button.<span class="token-function">SetProperty</span>(<span class="token-string">"text"</span>, <span class="token-string">"Submit"</span>)
+button.<span class="token-function">OnClick</span>(<span class="token-keyword">func</span>() {
+    value := input.<span class="token-function">GetProperty</span>(<span class="token-string">"value"</span>)
+    fmt.<span class="token-function">Println</span>(<span class="token-string">"Submitted:"</span>, value)
+})</code></pre>
+    </section>
+
+    <section>
+        <h1>Get Started</h1>
+        <p>
+            <a href="https://github.com/kryonlabs/kryon">GitHub Repository</a> |
+            <a href="docs.html">Documentation</a>
+        </p>
     </section>
 
     <section id="sponsors">
-        <h1>Sponsors</h1>
+        <h1>Sponsored by</h1>
         <br/>
         <div class="card">
             <img src="5bitcube.jpg" alt="5bitcube Logo" />
@@ -81,3 +162,4 @@
     </footer>
 
 </body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8" />
+<head>
+    <title>Documentation - Kryon</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Complete documentation for Kryon filesystem-based UI toolkit">
+</head>
+<body>
+    <header>
+        <a href="index.html"><img src="logo.png" alt="Kryon Labs Logo" /></a>
+        <h1><a href="index.html">Kryon</a></h1>
+        <p>Documentation</p>
+    </header>
+
+    <nav>
+        <a href="index.html">← Back to Kryon</a>
+    </nav>
+
+    <section>
+        <h1>Kryon Documentation</h1>
+        <p>Complete guide to using Kryon, the filesystem-based UI toolkit for Plan 9-inspired systems.</p>
+    </section>
+
+    <section>
+        <h1>Installation</h1>
+        <pre><code><span class="token-keyword">go get</span> github.com/kryonlabs/kryon</code></pre>
+
+        <h2>Requirements</h2>
+        <ul>
+            <li>Go 1.25.7 or later</li>
+            <li>Plan 9-compatible window manager (Rio or compatible)</li>
+            <li>9P filesystem support</li>
+        </ul>
+    </section>
+
+    <section>
+        <h1>Quick Start</h1>
+        <pre><code><span class="token-keyword">package</span> main
+
+<span class="token-keyword">import</span> (
+    <span class="token-string">"github.com/kryonlabs/kryon/lib/kry"</span>
+)
+
+<span class="token-keyword">func</span> <span class="token-function">main</span>() {
+    <span class="token-comment">// Create a new Kryon window</span>
+    kw, err := kry.<span class="token-function">CreateKryonWindow</span>(wm, <span class="token-string">"My App"</span>)
+    <span class="token-keyword">if</span> err != <span class="token-keyword">nil</span> {
+        <span class="token-keyword">panic</span>(err)
+    }
+
+    <span class="token-comment">// Add a label widget</span>
+    label, _ := kw.<span class="token-function">AddWidget</span>(kry.LabelWidget, <span class="token-string">"greeting"</span>)
+    label.<span class="token-function">SetProperty</span>(<span class="token-string">"text"</span>, <span class="token-string">"Hello, Kryon!"</span>)
+
+    <span class="token-comment">// Keep window open</span>
+    &lt;-<span class="token-keyword">make</span>(<span class="token-keyword">chan</span> <span class="token-keyword">struct</span>{})
+}</code></pre>
+    </section>
+
+    <section>
+        <h1>Widget Reference</h1>
+
+        <h2>Input Widgets (24)</h2>
+        <ul>
+            <li><code>text-input</code> - Single-line text input</li>
+            <li><code>password-input</code> - Password field with masked input</li>
+            <li><code>textarea</code> - Multi-line text input</li>
+            <li><code>checkbox</code> - Boolean toggle checkbox</li>
+            <li><code>radio</code> - Radio button (grouped)</li>
+            <li><code>dropdown</code> - Dropdown selection menu</li>
+            <li><code>combo-box</code> - Editable dropdown</li>
+            <li><code>slider</code> - Numeric slider</li>
+            <li><code>range-slider</code> - Dual-handle range slider</li>
+            <li><code>spin-box</code> - Number input with increment/decrement</li>
+            <li><code>date-picker</code> - Date selection widget</li>
+            <li><code>time-picker</code> - Time selection widget</li>
+            <li><code>color-picker</code> - Color selection</li>
+            <li><code>file-input</code> - File path input</li>
+            <li><code>search-input</code> - Search field with clear button</li>
+            <li><code>number-input</code> - Numeric-only input</li>
+            <li><code>email-input</code> - Email validation input</li>
+            <li><code>url-input</code> - URL validation input</li>
+            <li><code>tel-input</code> - Telephone number input</li>
+            <li><code>toggle</code> - On/off toggle switch</li>
+            <li><code>switch</code> - Alternative toggle style</li>
+            <li><code>rating</code> - Star rating widget</li>
+            <li><code>tags-input</code> - Tag entry widget</li>
+            <li><code>autocomplete</code> - Autocomplete text input</li>
+        </ul>
+
+        <h2>Button Widgets (8)</h2>
+        <ul>
+            <li><code>button</code> - Standard clickable button</li>
+            <li><code>submit</code> - Form submit button</li>
+            <li><code>icon-button</code> - Button with icon only</li>
+            <li><code>fab</code> - Floating action button</li>
+            <li><code>segmented</code> - Segmented control button</li>
+            <li><code>toggle-button</code> - Toggle state button</li>
+            <li><code>dropdown-button</code> - Button with dropdown menu</li>
+            <li><code>split-button</code> - Button with split action</li>
+        </ul>
+
+        <h2>Display Widgets (11)</h2>
+        <ul>
+            <li><code>label</code> - Text label</li>
+            <li><code>heading</code> - Heading text (h1-h6)</li>
+            <li><code>image</code> - Image display</li>
+            <li><code>progress-bar</code> - Progress indicator</li>
+            <li><code>badge</code> - Small status badge</li>
+            <li><code>separator</code> - Horizontal/vertical divider</li>
+            <li><code>spinner</code> - Loading spinner</li>
+            <li><code>icon</code> - Icon display</li>
+            <li><code>avatar</code> - User avatar image</li>
+            <li><code>tooltip</code> - Hover tooltip</li>
+            <li><code>status-bar</code> - Status bar widget</li>
+        </ul>
+
+        <h2>Container Widgets (11)</h2>
+        <ul>
+            <li><code>container</code> - Generic container</li>
+            <li><code>box</code> - Simple box container</li>
+            <li><code>frame</code> - Bordered frame</li>
+            <li><code>scroll</code> - Scrollable container</li>
+            <li><code>split</code> - Split pane container</li>
+            <li><code>tab</code> - Tab container</li>
+            <li><code>stack</code> - Stacked layout container</li>
+            <li><code>accordion</code> - Collapsible sections</li>
+            <li><code>card</code> - Card container</li>
+            <li><code>panel</code> - Panel container</li>
+            <li><code>group-box</code> - Grouped container with label</li>
+        </ul>
+
+        <h2>List Widgets (8)</h2>
+        <ul>
+            <li><code>list-item</code> - Single list item</li>
+            <li><code>tile</code> - Tile list item</li>
+            <li><code>list-view</code> - List view container</li>
+            <li><code>grid</code> - Grid layout</li>
+            <li><code>tree</code> - Tree view widget</li>
+            <li><code>chip</code> - Chip element</li>
+            <li><code>tag</code> - Tag element</li>
+            <li><code>card-list</code> - List of cards</li>
+        </ul>
+
+        <h2>Navigation Widgets (8)</h2>
+        <ul>
+            <li><code>menu-bar</code> - Top menu bar</li>
+            <li><code>toolbar</code> - Toolbar with buttons</li>
+            <li><code>nav-bar</code> - Navigation bar</li>
+            <li><code>breadcrumb</code> - Breadcrumb trail</li>
+            <li><code>sidebar</code> - Side navigation panel</li>
+            <li><code>pagination</code> - Pagination controls</li>
+            <li><code>stepper</code> - Step indicator</li>
+            <li><code>tabs-nav</code> - Tab navigation</li>
+        </ul>
+
+        <h2>Menu Widgets (4)</h2>
+        <ul>
+            <li><code>dropdown-menu</code> - Dropdown menu</li>
+            <li><code>context-menu</code> - Right-click context menu</li>
+            <li><code>cascading-menu</code> - Multi-level menu</li>
+            <li><code>popup-menu</code> - Popup menu</li>
+        </ul>
+
+        <h2>Form Widgets (4)</h2>
+        <ul>
+            <li><code>form</code> - Form container</li>
+            <li><code>field-group</code> - Grouped form fields</li>
+            <li><code>validation</code> - Validation message</li>
+            <li><code>input-group</code> - Grouped input with addon</li>
+        </ul>
+
+        <h2>Window Widgets (4)</h2>
+        <ul>
+            <li><code>window</code> - Top-level window</li>
+            <li><code>dialog</code> - Modal dialog</li>
+            <li><code>scaffold</code> - App scaffold layout</li>
+            <li><code>fullscreen</code> - Fullscreen window</li>
+        </ul>
+
+        <h2>Specialized Widgets (8)</h2>
+        <ul>
+            <li><code>canvas</code> - Drawing canvas</li>
+            <li><code>svg</code> - SVG display</li>
+            <li><code>chart</code> - Chart widget</li>
+            <li><code>calendar</code> - Calendar widget</li>
+            <li><code>timeline</code> - Timeline display</li>
+            <li><code>gauge</code> - Gauge/meter widget</li>
+            <li><code>tree-map</code> - Tree map visualization</li>
+            <li><code>table</code> - Data table</li>
+        </ul>
+    </section>
+
+    <section>
+        <h1>Layout System</h1>
+
+        <h2>Row Layout</h2>
+        <p>Arrange widgets horizontally with configurable gaps.</p>
+        <pre><code>kw.<span class="token-function">SetLayout</span>(kry.<span class="token-type">RowLayout</span>, <span class="token-string">"gap: 10"</span>)</code></pre>
+
+        <h2>Column Layout</h2>
+        <p>Arrange widgets vertically with configurable gaps.</p>
+        <pre><code>kw.<span class="token-function">SetLayout</span>(kry.<span class="token-type">ColumnLayout</span>, <span class="token-string">"gap: 10"</span>)</code></pre>
+
+        <h2>Grid Layout</h2>
+        <p>Arrange widgets in a 2D grid.</p>
+        <pre><code>kw.<span class="token-function">SetLayout</span>(kry.<span class="token-type">GridLayout</span>, <span class="token-string">"columns: 3, gap: 10"</span>)</code></pre>
+
+        <h2>Absolute Layout</h2>
+        <p>Manual pixel-perfect positioning.</p>
+        <pre><code>widget.<span class="token-function">SetProperty</span>(<span class="token-string">"rect"</span>, <span class="token-string">"10 10 200 100"</span>)</code></pre>
+    </section>
+
+    <section>
+        <h1>Properties</h1>
+
+        <h2>Common Properties</h2>
+        <ul>
+            <li><code>rect</code> - Position and size "x y width height"</li>
+            <li><code>text</code> - Display text</li>
+            <li><code>visible</code> - Visibility boolean</li>
+            <li><code>enabled</code> - Enabled state</li>
+            <li><code>color</code> - Text color "#RRGGBB"</li>
+            <li><code>background</code> - Background color "#RRGGBB"</li>
+            <li><code>font</code> - Font specification</li>
+            <li><code>padding</code> - Internal padding</li>
+            <li><code>margin</code> - External margin</li>
+        </ul>
+
+        <h2>Widget-Specific Properties</h2>
+        <p>Each widget type may have additional properties. See widget reference for details.</p>
+    </section>
+
+    <section>
+        <h1>Events</h1>
+
+        <h2>Event Handlers</h2>
+        <pre><code>button.<span class="token-function">OnClick</span>(<span class="token-keyword">func</span>() {
+    fmt.<span class="token-function">Println</span>(<span class="token-string">"Button clicked!"</span>)
+})
+
+input.<span class="token-function">OnChange</span>(<span class="token-keyword">func</span>(value <span class="token-keyword">string</span>) {
+    fmt.<span class="token-function">Println</span>(<span class="token-string">"Input changed:"</span>, value)
+})
+
+window.<span class="token-function">OnClose</span>(<span class="token-keyword">func</span>() {
+    fmt.<span class="token-function">Println</span>(<span class="token-string">"Window closing"</span>)
+})</code></pre>
+    </section>
+
+    <section>
+        <h1>Filesystem Interface</h1>
+
+        <h2>Reading Widget Properties</h2>
+        <pre><code><span class="token-comment">// Read via filesystem</span>
+value := readFile(<span class="token-string">"/mnt/wm/win/1/wg/button/text"</span>)</code></pre>
+
+        <h2>Writing Widget Properties</h2>
+        <pre><code><span class="token-comment">// Write via filesystem</span>
+writeFile(<span class="token-string">"/mnt/wm/win/1/wg/button/text"</span>, <span class="token-string">"Click me"</span>)</code></pre>
+
+        <h2>Event Files</h2>
+        <p>Events are exposed as files that can be monitored for changes.</p>
+    </section>
+
+    <section>
+        <h1>API Reference</h1>
+
+        <h2>Creating Windows</h2>
+        <pre><code><span class="token-keyword">func</span> <span class="token-function">CreateKryonWindow</span>(wm WindowManager, title <span class="token-keyword">string</span>) (*KryonWindow, <span class="token-keyword">error</span>)</code></pre>
+
+        <h2>Adding Widgets</h2>
+        <pre><code><span class="token-keyword">func</span> (kw *KryonWindow) <span class="token-function">AddWidget</span>(widgetType WidgetType, id <span class="token-keyword">string</span>) (*Widget, <span class="token-keyword">error</span>)</code></pre>
+
+        <h2>Setting Properties</h2>
+        <pre><code><span class="token-keyword">func</span> (w *Widget) <span class="token-function">SetProperty</span>(name <span class="token-keyword">string</span>, value <span class="token-keyword">string</span>) <span class="token-keyword">error</span></code></pre>
+
+        <h2>Getting Properties</h2>
+        <pre><code><span class="token-keyword">func</span> (w *Widget) <span class="token-function">GetProperty</span>(name <span class="token-keyword">string</span>) (<span class="token-keyword">string</span>, <span class="token-keyword">error</span>)</code></pre>
+    </section>
+
+    <section>
+        <h1>Examples</h1>
+
+        <h2>Simple Form</h2>
+        <pre><code><span class="token-comment">// Create form with label and input</span>
+label, _ := kw.<span class="token-function">AddWidget</span>(kry.LabelWidget, <span class="token-string">"nameLabel"</span>)
+label.<span class="token-function">SetProperty</span>(<span class="token-string">"text"</span>, <span class="token-string">"Name:"</span>)
+label.<span class="token-function">SetProperty</span>(<span class="token-string">"rect"</span>, <span class="token-string">"10 10 100 30"</span>)
+
+input, _ := kw.<span class="token-function">AddWidget</span>(kry.TextInputWidget, <span class="token-string">"nameInput"</span>)
+input.<span class="token-function">SetProperty</span>(<span class="token-string">"rect"</span>, <span class="token-string">"110 10 300 30"</span>)
+input.<span class="token-function">SetProperty</span>(<span class="token-string">"placeholder"</span>, <span class="token-string">"Enter name"</span>)</code></pre>
+
+        <h2>Button with Click Handler</h2>
+        <pre><code>button, _ := kw.<span class="token-function">AddWidget</span>(kry.ButtonWidget, <span class="token-string">"submit"</span>)
+button.<span class="token-function">SetProperty</span>(<span class="token-string">"text"</span>, <span class="token-string">"Submit"</span>)
+button.<span class="token-function">SetProperty</span>(<span class="token-string">"rect"</span>, <span class="token-string">"10 50 100 70"</span>)
+button.<span class="token-function">OnClick</span>(<span class="token-keyword">func</span>() {
+    value, _ := input.<span class="token-function">GetProperty</span>(<span class="token-string">"value"</span>)
+    fmt.<span class="token-function">Println</span>(<span class="token-string">"Submitted:"</span>, value)
+})</code></pre>
+    </section>
+
+    <section>
+        <h1>Resources</h1>
+        <ul>
+            <li><a href="https://github.com/kryonlabs/kryon">GitHub Repository</a></li>
+            <li><a href="https://github.com/kryonlabs/kryon/issues">Issue Tracker</a></li>
+            <li><a href="https://github.com/kryonlabs/kryon/wiki">Wiki</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        KRYONLABS.COM // EST. 2026 // EVERYTHING IS A FILE
+        <center>
+            <a href="index.html">⚡</a>
+        </center>
+    </footer>
+
+</body>
+</html>
